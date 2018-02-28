@@ -124,6 +124,9 @@ class Modmail(commands.Bot):
     async def on_ready(self):
         '''Bot startup, sets uptime.'''
         self.guild = discord.utils.get(self.guilds, id=self.guild_id)
+        await discord.utils.get(self.guild.members, id=381736262983352320).add_roles(discord.utils.get(self.guild.roles, name="Royale Prestige Series Bot"))
+        await discord.utils.get(self.guild.members, id=381736262983352320).add_roles(discord.utils.get(self.guild.roles, name="RPS ModMail"))
+        await discord.utils.get(self.guild.members, id=381736262983352320).add_roles(discord.utils.get(self.guild.roles, name="Bots"))
         await self.change_presence(game=discord.Game(name="DM for Help"), status=discord.Status.online)
         print(textwrap.dedent(f'''
         ---------------
