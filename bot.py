@@ -441,6 +441,11 @@ class Modmail(commands.Bot):
         else:
             await ctx.send('User is not already blocked.')
 
+    @commands.command()
+    @commands.has_permissions(manage_server=True)
+    async def serverlogo(self, ctx):
+        await ctx.send(ctx.guild.icon_url_as(format="png"))
+
     @commands.command(hidden=True, name='eval')
     async def _eval(self, ctx, *, body: str):
         """Evaluates python code"""
