@@ -442,7 +442,6 @@ class Modmail(commands.Bot):
             await ctx.send('User is not already blocked.')
 
     @commands.command()
-    @commands.has_permissions(manage_server=True)
     async def serverlogo(self, ctx):
         await ctx.send(ctx.guild.icon_url_as(format="png"))
 
