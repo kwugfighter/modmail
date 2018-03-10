@@ -516,7 +516,7 @@ class Modmail(commands.Bot):
 
     @commands.command()
     @commands.has_permissions(administrator=True)
-    async def anuncio(self, ctx, *mensaje):
+    async def anuncio(self, ctx, *, mensaje):
         if "|||" in mensaje:
             poll = mensaje.split("|||")[1]
             nums = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
