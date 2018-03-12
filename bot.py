@@ -529,7 +529,7 @@ class Modmail(commands.Bot):
             sent_message = await discord.utils.get(ctx.guild.text_channels, id=415266839384424469).send(embed=em)
             for n in range(len(choices)):
                 await sent_message.add_reaction(numlist[n])
-            await asyncio.sleep(10)
+            await asyncio.sleep(43200)
             sent_message = await discord.utils.get(ctx.guild.text_channels, id=415266839384424469).get_message(sent_message.id)
             reactions = sorted(sent_message.reactions, key=lambda x: numlist.index(x.emoji)+1)
             em.description = '\n'.join([f"{numlist[n]} {choice} - **{reactions[n].count-1} votos**" for n,choice in enumerate(choices)])
