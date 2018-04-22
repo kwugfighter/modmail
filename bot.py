@@ -396,7 +396,7 @@ class Modmail(commands.Bot):
         '''Set a custom playing status for the bot.'''
         if message == 'clear':
             return await self.change_presence(game=None)
-        await self.change_presence(game=discord.Game(name=message), status=discord.Status.online)
+        await self.change_presence(activity=discord.Game(name=message), status=discord.Status.online)
         await ctx.send(f"Changed status to **{message}**")
 
     @commands.command()
@@ -512,29 +512,6 @@ class Modmail(commands.Bot):
 
         # remove `foo`
         return content.strip('` \n')
-
-
-    @commands.command()
-    @commands.has_permissions(administrator=True)
-    async def anuncio(self, ctx, *, mensaje):
-        if "|||" in mensaje:
-            poll = mensaje.split("|||")[1]
-            nums = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
-            numlist = []
-            for emoji in self.get_guild(283574126029832195).emojis:
-                if emoji.name in nums:
-                    numlist.append(emoji)
-            choices = poll.split('|')
-            em = discord.Embed(color=0x181818, title=mensaje.split("||")[0], description=mensaje.split("||")[1].split("|||")[0])
-            sent_message = await discord.utils.get(ctx.guild.text_channels, id=415266839384424469).send(embed=em)
-            for n in range(len(choices)):
-                await sent_message.add_reaction(numlist[n])
-            await asyncio.sleep(43200)
-            sent_message = await discord.utils.get(ctx.guild.text_channels, id=415266839384424469).get_message(sent_message.id)
-            reactions = sorted(sent_message.reactions, key=lambda x: numlist.index(x.emoji)+1)
-            em.description = '\n'.join([f"{numlist[n]} {choice} - **{reactions[n].count-1} votos**" for n,choice in enumerate(choices)])
-            return await ctx.author.send(embed=em)
-        await discord.utils.get(ctx.guild.text_channels, id=415266839384424469).send(embed=discord.Embed(color=0x181818, title=mensaje.split("||")[0], description = mensaje.split("||")[1]))
 
 
                 
